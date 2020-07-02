@@ -10,112 +10,137 @@ public class taxtables {
 	final double RATE6 = 0.41 ;
 	final double RATE7 = 0.45 ;
 	
-	final double noTaxBracket = 14_220;
-	final double bracketOne = 205_900_00 ;
-	final double bracketTwo  = 321_600_00;
-	final double bracketThree = 445_100_00;
-	final double bracketFour = 584_200_00;
-	final double bracketFive = 744_800_00 ;
-	final double bracketSix = 1_577_300_00 ;
+	final double noTaxBracket = 79_000.00;
+	final double bracketOne = 205_900.00 ;
+	final double bracketTwo  = 321_600.00;
+	final double bracketThree = 445_100.00;
+	final double bracketFour = 584_200.00;
+	final double bracketFive = 744_800.00 ;
+	final double bracketSix = 1_577_300.00 ;
 	
 	
 	private double netIncome;
+	private double Taxamount;
 
 	public taxtables(double netIncome) {
 		this.netIncome = netIncome;
 	}
 
 	public double getNetIncome() {
-		return netIncome;
+		return this.netIncome;
 	}
 	
-	public double noTax() {
+	private double noTax() {
 		return 0.00;
 	}
 
-	public double taxBracketOne() {
+	private double taxBracketOne() {
 		return RATE1 * getNetIncome();
 	}
 
-	public double taxBracketTwo() {
-		return taxBracketOne() 
+	private double taxBracketTwo() {
+		return RATE1*bracketOne 
                 + RATE2 * (getNetIncome() - bracketOne );
 	}
 	
-	public double taxBracketThree() {
-		return taxBracketTwo()
-                + RATE3 * (getNetIncome() - bracketOne - bracketThree);
+	private double taxBracketThree() {
+		return RATE1*bracketOne + RATE2* (bracketTwo-bracketOne-1)
+                + RATE3 * (getNetIncome() - bracketOne - (bracketTwo-bracketOne-1));
 	}
 	
-	public double taxBracketFour() {
-		return taxBracketThree()
-                + RATE4 * (getNetIncome() - bracketOne - 
-                		bracketThree-bracketFour);
+	private double taxBracketFour() {
+		return RATE1*bracketOne + RATE2* (bracketTwo-bracketOne-1)
+				+ RATE3*(bracketThree-bracketTwo-1)
+				+RATE4*(getNetIncome()-bracketOne - 
+						(bracketTwo-bracketOne-1)-(bracketThree-bracketTwo-1));
 	}
 	
-	public double taxBracketFive() {
-		return taxBracketFive()
+	private double taxBracketFive() {
+		return RATE1*bracketOne + RATE2* (bracketTwo-bracketOne-1)
+				+ RATE3*(bracketThree-bracketTwo-1)
+				+RATE4*(bracketFour-bracketThree-1)
                 + RATE5 * (getNetIncome() - bracketOne - 
-                		bracketThree-bracketFour- bracketFive);
+                		(bracketTwo-bracketOne-1)-
+                		(bracketThree-bracketTwo-1)-
+                		(bracketFour-bracketThree-1)
+                		);
 	}
 	
-	public double taxBracketsix() {
-		return taxBracketFive()
-                + RATE6 * (getNetIncome() - bracketOne - 
-                		bracketThree-bracketFour-bracketFive
-                		-bracketSix);
+	private double taxBracketSix() {
+		return RATE1*bracketOne + 
+				RATE2* (bracketTwo-bracketOne-1)
+				+ RATE3*(bracketThree-bracketTwo-1)
+				+RATE4*(bracketFour-bracketThree-1)+
+				RATE5*(bracketFive-bracketFour-1)+
+				RATE6 * (getNetIncome() - bracketOne - 
+                		(bracketTwo-bracketOne-1)-
+                		(bracketThree-bracketTwo-1)-
+                		(bracketFour-bracketThree-1)-
+                		(bracketFive-bracketFour-1)
+                		);
+				
 	}
 	
-	public double taxBracketseven() {
-		return taxBracketsix()
-                + RATE7 * (getNetIncome() - bracketOne - 
-                		bracketThree-bracketFour-bracketFive
-                		-bracketSix-bracketSeven);
+	private double taxBracketSeven() {
+		return RATE1*bracketOne+ 
+			   RATE2* (bracketTwo-bracketOne-1)+ 
+			   RATE3*(bracketThree-bracketTwo-1)
+			   +RATE4*(bracketFour-bracketThree-1)+
+			   +RATE5*(bracketFive-bracketFour-1)+
+			   RATE6*(bracketSix-bracketFive-1)+
+			   RATE7 * (getNetIncome() - bracketOne - 
+               		(bracketTwo-bracketOne-1)-
+               		(bracketThree-bracketTwo-1)-
+               		(bracketFour-bracketThree-1)-
+               		(bracketFive-bracketFour-1)-
+               		(bracketSix-bracketFive-1)
+               		);
+			   
 	}
 	
-	public void calctax() {
-		if (netIncome < noTaxBracket) {
-			System.out.println("This will be printed");
+
+	
+	
+	public int calctax() {
+		if (getNetIncome() <= noTaxBracket) {
+			Taxamount=noTax();
 		}
-		else if (netIncome < bracketOne) {
-			System.out.println("This will be printed");
+		else if (netIncome <= bracketOne) {
+			Taxamount=taxBracketOne();
 		}
-		else if (netIncome < bracketTwo) {
-			System.out.println("This will be printed");
+		else if (netIncome <= bracketTwo) {
+			Taxamount=taxBracketTwo();
 		}
-		else if (netIncome < bracketThree) {
-			System.out.println("This will be printed");
+		else if (netIncome <= bracketThree) {
+			Taxamount=taxBracketThree();
 		}
-		else if (netIncome < bracketFour)
+		else if (netIncome <= bracketFour)
 		{
-			System.out.println("This will be printed");
+			Taxamount=taxBracketFour();
 		}
-		else if (netIncome < bracketFive)
+		else if (netIncome <= bracketFive)
 		{
-			System.out.println("This will be printed");
+			Taxamount=taxBracketFive();
 		}
-		else if (netIncome < bracketSix)
+		else if (netIncome <= bracketSix)
 		{
-			System.out.println("This will be printed");
-		}
-		else if (netIncome < bracketSeven)
-		{
-			System.out.println("This will be printed");
+			Taxamount=taxBracketSix();
 		}
 		else
 		{
-			System.out.println("This will be printed");
+			Taxamount=taxBracketSeven();
 			
 		}
-			
+		return (int) Taxamount;
 		
-	}
-
-
-
+		}
+			
 
 	public static void main(String[] args) {
-		System.out.println("hello");
+		taxtables tax = new taxtables(215900);
+		System.out.println(tax.calctax());
+		//double amount=tax.calctax();
+		
 
 	}
 
