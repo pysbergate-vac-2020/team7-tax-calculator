@@ -1,10 +1,17 @@
 package com.psybergate.vac202006;
 
-class Nettaxpayable {
+public class Nettaxpayable {
 	private double taxpayable= 84628; //value to get from a different class need to get
 	private double medicalcredit = 10000;
 	private double primaryrebate = 14220;
 	
+	public Nettaxpayable(double taxpayable, double medicalcredit, double primaryrebate) {
+		super();
+		this.taxpayable = taxpayable;
+		this.medicalcredit = medicalcredit;
+		this.primaryrebate = primaryrebate;
+	}
+
 	public double getMedicalcredit() {
 		return medicalcredit;
 	}
@@ -17,12 +24,12 @@ class Nettaxpayable {
 		return taxpayable;
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Nettaxpayable tax= new Nettaxpayable();
 		double totalnettax = tax.taxpayable - tax.medicalcredit; 
 		System.out.print(totalnettax);
-	}
+	}*/
 	}
 
 

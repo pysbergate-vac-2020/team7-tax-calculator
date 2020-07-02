@@ -1,14 +1,14 @@
 package com.psybergate.vac202006;
 
-public class taxtables {
+public class TaxTable {
 	
-	final double RATE1 = 0.18 ;
-	final double RATE2 = 0.26;
-	final double RATE3 = 0.31;
-	final double RATE4 = 0.36;
-	final double RATE5 = 0.39;
-	final double RATE6 = 0.41 ;
-	final double RATE7 = 0.45 ;
+	final double rate1 = 0.18 ;
+	final double rate2 = 0.26;
+	final double rate3 = 0.31;
+	final double rate4 = 0.36;
+	final double rate5 = 0.39;
+	final double rate6 = 0.41 ;
+	final double rate7 = 0.45 ;
 	
 	final double noTaxBracket = 79_000.00;
 	final double bracketOne = 205_900.00 ;
@@ -20,9 +20,9 @@ public class taxtables {
 	
 	
 	private double netIncome;
-	private double Taxamount;
+	private double taxAmount;
 
-	public taxtables(double netIncome) {
+	public TaxTable(double netIncome) {
 		this.netIncome = netIncome;
 	}
 
@@ -35,31 +35,31 @@ public class taxtables {
 	}
 
 	private double taxBracketOne() {
-		return RATE1 * getNetIncome();
+		return rate1 * getNetIncome();
 	}
 
 	private double taxBracketTwo() {
-		return RATE1*bracketOne 
-                + RATE2 * (getNetIncome() - bracketOne );
+		return rate1*bracketOne 
+                + rate2 * (getNetIncome() - bracketOne );
 	}
 	
 	private double taxBracketThree() {
-		return RATE1*bracketOne + RATE2* (bracketTwo-bracketOne-1)
-                + RATE3 * (getNetIncome() - bracketOne - (bracketTwo-bracketOne-1));
+		return rate1*bracketOne + rate2* (bracketTwo-bracketOne-1)
+                + rate3 * (getNetIncome() - bracketOne - (bracketTwo-bracketOne-1));
 	}
 	
 	private double taxBracketFour() {
-		return RATE1*bracketOne + RATE2* (bracketTwo-bracketOne-1)
-				+ RATE3*(bracketThree-bracketTwo-1)
-				+RATE4*(getNetIncome()-bracketOne - 
+		return rate1*bracketOne + rate2* (bracketTwo-bracketOne-1)
+				+ rate3*(bracketThree-bracketTwo-1)
+				+rate4*(getNetIncome()-bracketOne - 
 						(bracketTwo-bracketOne-1)-(bracketThree-bracketTwo-1));
 	}
 	
 	private double taxBracketFive() {
-		return RATE1*bracketOne + RATE2* (bracketTwo-bracketOne-1)
-				+ RATE3*(bracketThree-bracketTwo-1)
-				+RATE4*(bracketFour-bracketThree-1)
-                + RATE5 * (getNetIncome() - bracketOne - 
+		return rate1*bracketOne + rate2* (bracketTwo-bracketOne-1)
+				+ rate3*(bracketThree-bracketTwo-1)
+				+rate4*(bracketFour-bracketThree-1)
+                + rate5 * (getNetIncome() - bracketOne - 
                 		(bracketTwo-bracketOne-1)-
                 		(bracketThree-bracketTwo-1)-
                 		(bracketFour-bracketThree-1)
@@ -67,12 +67,12 @@ public class taxtables {
 	}
 	
 	private double taxBracketSix() {
-		return RATE1*bracketOne + 
-				RATE2* (bracketTwo-bracketOne-1)
-				+ RATE3*(bracketThree-bracketTwo-1)
-				+RATE4*(bracketFour-bracketThree-1)+
-				RATE5*(bracketFive-bracketFour-1)+
-				RATE6 * (getNetIncome() - bracketOne - 
+		return rate1*bracketOne + 
+				rate2* (bracketTwo-bracketOne-1)
+				+ rate3*(bracketThree-bracketTwo-1)
+				+rate4*(bracketFour-bracketThree-1)+
+				rate5*(bracketFive-bracketFour-1)+
+				rate6 * (getNetIncome() - bracketOne - 
                 		(bracketTwo-bracketOne-1)-
                 		(bracketThree-bracketTwo-1)-
                 		(bracketFour-bracketThree-1)-
@@ -82,13 +82,13 @@ public class taxtables {
 	}
 	
 	private double taxBracketSeven() {
-		return RATE1*bracketOne+ 
-			   RATE2* (bracketTwo-bracketOne-1)+ 
-			   RATE3*(bracketThree-bracketTwo-1)
-			   +RATE4*(bracketFour-bracketThree-1)+
-			   +RATE5*(bracketFive-bracketFour-1)+
-			   RATE6*(bracketSix-bracketFive-1)+
-			   RATE7 * (getNetIncome() - bracketOne - 
+		return rate1*bracketOne+ 
+			   rate2* (bracketTwo-bracketOne-1)+ 
+			   rate3*(bracketThree-bracketTwo-1)
+			   +rate4*(bracketFour-bracketThree-1)+
+			   +rate5*(bracketFive-bracketFour-1)+
+			   rate6*(bracketSix-bracketFive-1)+
+			   rate7 * (getNetIncome() - bracketOne - 
                		(bracketTwo-bracketOne-1)-
                		(bracketThree-bracketTwo-1)-
                		(bracketFour-bracketThree-1)-
@@ -103,41 +103,41 @@ public class taxtables {
 	
 	public int calctax() {
 		if (getNetIncome() <= noTaxBracket) {
-			Taxamount=noTax();
+			taxAmount=noTax();
 		}
 		else if (netIncome <= bracketOne) {
-			Taxamount=taxBracketOne();
+			taxAmount=taxBracketOne();
 		}
 		else if (netIncome <= bracketTwo) {
-			Taxamount=taxBracketTwo();
+			taxAmount=taxBracketTwo();
 		}
 		else if (netIncome <= bracketThree) {
-			Taxamount=taxBracketThree();
+			taxAmount=taxBracketThree();
 		}
 		else if (netIncome <= bracketFour)
 		{
-			Taxamount=taxBracketFour();
+			taxAmount=taxBracketFour();
 		}
 		else if (netIncome <= bracketFive)
 		{
-			Taxamount=taxBracketFive();
+			taxAmount=taxBracketFive();
 		}
 		else if (netIncome <= bracketSix)
 		{
-			Taxamount=taxBracketSix();
+			taxAmount=taxBracketSix();
 		}
 		else
 		{
-			Taxamount=taxBracketSeven();
+			taxAmount=taxBracketSeven();
 			
 		}
-		return (int) Taxamount;
+		return (int) taxAmount;
 		
 		}
 			
 
 	public static void main(String[] args) {
-		taxtables tax = new taxtables(215900);
+		TaxTable tax = new TaxTable(215900);
 		System.out.println(tax.calctax());
 		//double amount=tax.calctax();
 		
