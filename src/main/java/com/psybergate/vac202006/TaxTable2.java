@@ -69,12 +69,6 @@ public class TaxTable2 {
 	public int totalPayableTax() {
 		return (int) (sumPreviousTaxRange()+determineCalcAmountPercent());
 	}
-	
-	public static void main(String[] args) {
-		TaxTable2 tax = new TaxTable2(90000);
-		System.out.println(tax.totalPayableTax());
-		//double amount=tax.calctax();
-	}
 }
 
 	

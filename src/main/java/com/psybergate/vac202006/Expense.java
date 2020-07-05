@@ -40,7 +40,7 @@ public class Expense {
 		return calcRetirementFundingDeductable() + calcTravelAllowanceDeductable();
 	}
 	
-	private Expense(double travelAllowanceAmount, double retirementFundingTotal, double salary) {
+	public Expense(double travelAllowanceAmount, double retirementFundingTotal, double salary) {
 		this.travelAllowanceAmount = travelAllowanceAmount;
 		this.retirementFundingTotal = retirementFundingTotal;
 		this.salary = salary;
