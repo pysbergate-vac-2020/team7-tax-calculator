@@ -13,7 +13,7 @@ public class Main {
 		
 		System.out.println("Taxable Income: " + taxableIncome);
 		
-		TaxTable2 tax_table = new TaxTable2(taxableIncome);
+		TaxTable tax_table = new TaxTable(taxableIncome);
 		
 		int total_payable_tax = tax_table.totalPayableTax();
 		
