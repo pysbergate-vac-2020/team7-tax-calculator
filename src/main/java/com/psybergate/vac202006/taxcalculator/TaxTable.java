@@ -1,4 +1,4 @@
-package com.psybergate.vac202006;
+package com.psybergate.vac202006.taxcalculator;
 
 public class TaxTable {
 	private final double[] TAX_RATES= {0.18,0.26,0.31,0.36,0.39,0.41,0.45};

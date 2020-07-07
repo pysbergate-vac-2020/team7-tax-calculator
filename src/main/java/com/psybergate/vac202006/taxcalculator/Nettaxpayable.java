@@ -1,4 +1,4 @@
-package com.psybergate.vac202006;
+package com.psybergate.vac202006.taxcalculator;
 
 public class Nettaxpayable {
 	private double taxpayable= 84628; //value to get from a different class need to get

@@ -1,4 +1,4 @@
-package com.psybergate.vac202006;
+package com.psybergate.vac202006.taxcalculator;
 
 public class Expense {
 	
