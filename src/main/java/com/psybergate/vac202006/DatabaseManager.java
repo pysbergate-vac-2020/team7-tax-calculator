@@ -8,7 +8,7 @@ public class DatabaseManager {
 
 	private Connection connection;
 	
-	private void insertNewPerson(String name, String surname, String taxNumber) {
+	public void insertNewPerson(String name, String surname, String taxNumber) {
 		try {
 			connect();
 			Statement insertStatement = connection.createStatement();
@@ -21,7 +21,7 @@ public class DatabaseManager {
 		}
 	}
 	
-	private int getPersonID(String taxNumber) {
+	public int getPersonID(String taxNumber) {
 		try {
 			connect();
 			Statement insertStatement = connection.createStatement();
@@ -38,7 +38,7 @@ public class DatabaseManager {
 		}
 	}
 	
-	private void insertPersonIncome(int personID, int incomeSalary, int incomeBonus, int incomeInterest, int capitalGain) {
+	public void insertPersonIncome(int personID, int incomeSalary, int incomeBonus, int incomeInterest, int capitalGain) {
 		try {
 			connect();
 			Statement insertStatement = connection.createStatement();
@@ -51,7 +51,7 @@ public class DatabaseManager {
 		}
 	}
 	
-	private int getPersonIncomeSalary(String taxNumber) {
+	public int getPersonIncomeSalary(String taxNumber) {
 		try {
 			connect();
 			Statement insertStatement = connection.createStatement();
@@ -68,7 +68,7 @@ public class DatabaseManager {
 		}
 	}
 	
-	private int getPersonIncomeBonus(String taxNumber) {
+	public int getPersonIncomeBonus(String taxNumber) {
 		try {
 			connect();
 			Statement insertStatement = connection.createStatement();
@@ -85,7 +85,7 @@ public class DatabaseManager {
 		}
 	}
 	
-	private int getPersonIncomeInterest(String taxNumber) {
+	public int getPersonIncomeInterest(String taxNumber) {
 		try {
 			connect();
 			Statement insertStatement = connection.createStatement();
@@ -102,7 +102,7 @@ public class DatabaseManager {
 		}
 	}
 	
-	private int getPersonIncomeCapitalGain(String taxNumber) {
+	public int getPersonIncomeCapitalGain(String taxNumber) {
 		try {
 			connect();
 			Statement insertStatement = connection.createStatement();
@@ -119,7 +119,7 @@ public class DatabaseManager {
 		}
 	}
 	
-	private void insertPersonExpenses(int personID, int retirementFund, int travelAllowance) {
+	public void insertPersonExpenses(int personID, int retirementFund, int travelAllowance) {
 		try {
 			connect();
 			Statement insertStatement = connection.createStatement();
@@ -132,7 +132,7 @@ public class DatabaseManager {
 		}
 	}
 	
-	private int getPersonExpensesRetirementFund(String taxNumber) {
+	public int getPersonExpensesRetirementFund(String taxNumber) {
 		try {
 			connect();
 			Statement insertStatement = connection.createStatement();
@@ -149,7 +149,7 @@ public class DatabaseManager {
 		}
 	}
 	
-	private int getPersonExpensesTravelAllowance(String taxNumber) {
+	public int getPersonExpensesTravelAllowance(String taxNumber) {
 		try {
 			connect();
 			Statement insertStatement = connection.createStatement();
@@ -167,7 +167,7 @@ public class DatabaseManager {
 	}
 
 		
-	private void connect() {
+	public void connect() {
 		try{
 			//Class.forName("org.postgresql.Driver");
 			final String url = "jdbc:postgresql://localhost:5432/postgres";
