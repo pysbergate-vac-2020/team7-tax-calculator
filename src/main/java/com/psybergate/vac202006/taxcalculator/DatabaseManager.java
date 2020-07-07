@@ -21,6 +21,8 @@ public class DatabaseManager {
 		}
 	}
 	
+	
+	
 	public int getPersonID(String taxNumber) {
 		try {
 			connect();
@@ -38,12 +40,13 @@ public class DatabaseManager {
 		}
 	}
 	
-	public void insertPersonIncome(int personID, int incomeSalary, int incomeBonus, int incomeInterest, int capitalGain) {
+	public void insertPersonIncome(String taxNumber ,Income income) {
+		
 		try {
 			connect();
 			Statement insertStatement = connection.createStatement();
 			String sql = "INSERT INTO public.\"INCOME\"( \"PERSON_ID\", \"INCOME_SALARY\", \"INCOME_BONUS\", \"INCOME_INTEREST\", \"INCOME_CAPITAL_GAIN\")\r\n" + 
-					"	VALUES ("+ personID + "," + incomeSalary + "," + incomeBonus + "," + incomeInterest + "," + capitalGain + ");";
+					"	VALUES ("+  getPersonID(taxNumber) + "," + income.getPersonSalary() + "," + income.getPersonBonus() + "," + income.getInterestRecieved() + "," + income.getCapitalGain() + ");";
 			insertStatement.executeUpdate(sql);
 			//connection.commit();
 		} catch (SQLException e) {

@@ -7,51 +7,33 @@ import java.util.Scanner;
 public class Income {
 	private double Salary, Bonus, interestRecieved;
 	private double totalCapitalGainTaxable;
-	private int numberofAssetsDisposed;
-	private List<CapitalGain>listOFCapitalGains=new ArrayList();
-	private CapitalGain capitalgain;
+	private CapitalGain capitalGain;
 	
 	
-	public Income(double personSalary, double personBonus, double interestRecieved, int numberofAssetsDisposed) {
+	public Income(double personSalary, double personBonus, double interestRecieved ,CapitalGain capitalGain) {
 		this.Salary = personSalary;
 		this.Bonus = personBonus;
 		this.interestRecieved = interestRecieved;
-		this.numberofAssetsDisposed = numberofAssetsDisposed;
+		this.capitalGain=capitalGain;
 	}
 
-	private double getPersonSalary() {
+	public double getPersonSalary() {
 		return Salary;
 	}
 
-	private double getPersonBonus() {
+	public double getPersonBonus() {
 		return Bonus;
 	}
 
-	private double getInterestRecieved() {
+	public double getInterestRecieved() {
 		return interestRecieved;
 	}
-
-	private int getNumberofAssetsDisposed() {
-		return numberofAssetsDisposed;
-	}
 	
-	private void getCapitalGains() {
-		for(int i=0;i<numberofAssetsDisposed;i++) {
-			Scanner in= new Scanner(System.in);
-			System.out.println("Purchase Price?");
-			double purchasePrice=in.nextDouble();
-			System.out.println("Additional expenses made?");
-			double additionalExpenses=in.nextDouble();
-			System.out.println("Sell Price?");
-			double sellPrice=in.nextDouble();
-			System.out.println("Was the Asset a primary residence");
-			boolean primaryRes=in.nextBoolean();
-			capitalgain=new CapitalGain(purchasePrice,additionalExpenses,sellPrice,primaryRes);
-			listOFCapitalGains.add(capitalgain);
-		}	
+	public CapitalGain getCapitalGain() {
+		return capitalGain;
 	}
 
-	private double calTaxFromInterest() {
+	private double calculateTaxableIncomeFromInterest() {
 		double interestRecieved = getInterestRecieved();
 		double taxableIncomeFromIntReceived = interestRecieved - 23500.0;
 		if (taxableIncomeFromIntReceived <= 0) {
@@ -63,13 +45,11 @@ public class Income {
 	}
 
 	
-
 	public  double calTotalTaxableIncome() {
 		double taxableSalary = getPersonSalary();
 		double taxableBonus = getPersonBonus();
-		double TaxableInterest = calTaxFromInterest();
-		getCapitalGains();
-		double totalTaxableCapitalGain = CapitalGain.getTotalTaxableCapitalGain(listOFCapitalGains);
+		double TaxableInterest = calculateTaxableIncomeFromInterest();
+		double totalTaxableCapitalGain = capitalGain.capitalGainFromAsset() ;
 		double totalTaxableIncome = taxableSalary + taxableBonus + TaxableInterest + totalTaxableCapitalGain;
 		System.out.println("Total Taxable income = " + totalTaxableIncome);
 		return totalTaxableIncome;
