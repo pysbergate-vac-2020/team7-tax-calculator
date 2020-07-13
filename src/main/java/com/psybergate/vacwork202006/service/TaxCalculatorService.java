@@ -6,7 +6,7 @@ public class TaxCalculatorService {
 	
 	private int getIncomeCapitalGain(String userTaxNumber) {
 		try {
-			DatabaseManager dbManager = new DatabaseManager();
+			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonIncomeCapitalGain(userTaxNumber);
 		} catch (Exception e) {
 			System.out.println("Tax Calculator Service Error: Could not get Capital Gain from database.");
@@ -16,7 +16,7 @@ public class TaxCalculatorService {
 	
 	private int getIncomeSalary(String userTaxNumber) {
 		try {
-			DatabaseManager dbManager = new DatabaseManager();
+			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonIncomeSalary(userTaxNumber);
 		} catch (Exception e) {
 			System.out.println("Tax Calculator Service Error: Could not get Income Salary from database.");
@@ -26,7 +26,7 @@ public class TaxCalculatorService {
 	
 	private int getIncomeBonus(String userTaxNumber) {
 		try {
-			DatabaseManager dbManager = new DatabaseManager();
+			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonIncomeBonus(userTaxNumber);
 		} catch (Exception e) {
 			System.out.println("Tax Calculator Service Error: Could not get Income Bonus from database.");
@@ -36,7 +36,7 @@ public class TaxCalculatorService {
 	
 	private int getExpensesRetirementFund(String userTaxNumber) {
 		try {
-			DatabaseManager dbManager = new DatabaseManager();
+			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonExpensesRetirementFund(userTaxNumber);
 		} catch (Exception e) {
 			System.out.println("Tax Calculator Service Error: Could not get Retirement Fund from database.");
@@ -46,7 +46,7 @@ public class TaxCalculatorService {
 	
 	private int getExpensesTravelAllowance(String userTaxNumber) {
 		try {
-			DatabaseManager dbManager = new DatabaseManager();
+			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonExpensesTravelAllowance(userTaxNumber);
 		} catch (Exception e) {
 			System.out.println("Tax Calculator Service Error: Could not get Travel Allowance from database.");
@@ -55,7 +55,7 @@ public class TaxCalculatorService {
 	}
 	
 	public static int getNetTaxPayable(String userTaxNumber) {
-		
+		return 700000;//dummy var
 	}
 
 	public static void main(String[] args) {
