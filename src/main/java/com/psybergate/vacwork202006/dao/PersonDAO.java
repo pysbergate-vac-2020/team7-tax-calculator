@@ -172,7 +172,7 @@ public class PersonDAO {
 	}
 
 		
-	public void connect() {
+	private void connect() {
 		try{
 			//Class.forName("org.postgresql.Driver");
 			final String url = "jdbc:postgresql://localhost:5432/postgres";
@@ -189,13 +189,6 @@ public class PersonDAO {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-	}
-		
-	public static void main(String[] args) {
-		PersonDAO sqlconnect = new PersonDAO();
-		//sqlconnect.insertNewPerson("Bor", "Mtta", "76576578");
-		System.out.println(sqlconnect.getPersonIncomeCapitalGain("76576578"));
 	}
 }
 

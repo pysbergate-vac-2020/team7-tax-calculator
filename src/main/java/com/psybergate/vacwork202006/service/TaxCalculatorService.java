@@ -4,7 +4,7 @@ import com.psybergate.vacwork202006.dao.*;
 
 public class TaxCalculatorService {
 	
-	private int getIncomeCapitalGain(String userTaxNumber) {
+	private static int getIncomeCapitalGain(String userTaxNumber) {
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonIncomeCapitalGain(userTaxNumber);
@@ -14,7 +14,7 @@ public class TaxCalculatorService {
 		}
 	}
 	
-	private int getIncomeSalary(String userTaxNumber) {
+	private static int getIncomeSalary(String userTaxNumber) {
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonIncomeSalary(userTaxNumber);
@@ -24,7 +24,7 @@ public class TaxCalculatorService {
 		}
 	}
 	
-	private int getIncomeBonus(String userTaxNumber) {
+	private static int getIncomeBonus(String userTaxNumber) {
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonIncomeBonus(userTaxNumber);
@@ -34,7 +34,7 @@ public class TaxCalculatorService {
 		}
 	}
 	
-	private int getExpensesRetirementFund(String userTaxNumber) {
+	private static int getExpensesRetirementFund(String userTaxNumber) {
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonExpensesRetirementFund(userTaxNumber);
@@ -44,7 +44,7 @@ public class TaxCalculatorService {
 		}
 	}
 	
-	private int getExpensesTravelAllowance(String userTaxNumber) {
+	private static int getExpensesTravelAllowance(String userTaxNumber) {
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonExpensesTravelAllowance(userTaxNumber);
@@ -55,10 +55,13 @@ public class TaxCalculatorService {
 	}
 	
 	public static int getNetTaxPayable(String userTaxNumber) {
-		return 700000;//dummy var
+		//return 700000;//dummy var
+		return getIncomeCapitalGain(userTaxNumber);
 	}
 
 	public static void main(String[] args) {
-		
+		int var = 69420;
+		System.out.println(var);
+		System.out.println(69);
 	}
 }
