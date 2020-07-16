@@ -1,8 +1,39 @@
 package com.psybergate.vacwork202006.service;
 
 import com.psybergate.vacwork202006.dao.*;
+import com.psybergate.vacwork202006.taxcalculator.*;
 
 public class TaxCalculatorService {
+	
+	private static int getIncomeSalary(String userTaxNumber) {
+		try {
+			PersonDAO dbManager = new PersonDAO();
+			return dbManager.getPersonIncomeSalary(userTaxNumber);
+		} catch (Exception e) {
+			System.out.println("Tax Calculator Service Error: Could not get Salary from database.");
+			return -1;
+		}
+	}
+	
+	private static int getIncomeBonus(String userTaxNumber) {
+		try {
+			PersonDAO dbManager = new PersonDAO();
+			return dbManager.getPersonIncomeBonus(userTaxNumber);
+		} catch (Exception e) {
+			System.out.println("Tax Calculator Service Error: Could not get Bonus from database.");
+			return -1;
+		}
+	}
+	
+	private static int getIncomeInterest(String userTaxNumber) {
+		try {
+			PersonDAO dbManager = new PersonDAO();
+			return dbManager.getPersonIncomeInterest(userTaxNumber);
+		} catch (Exception e) {
+			System.out.println("Tax Calculator Service Error: Could not get Interest from database.");
+			return -1;
+		}
+	}
 	
 	private static int getIncomeCapitalGain(String userTaxNumber) {
 		try {
@@ -14,22 +45,12 @@ public class TaxCalculatorService {
 		}
 	}
 	
-	private static int getIncomeSalary(String userTaxNumber) {
+	private static int getTaxableIncome(String userTaxNumber) {
 		try {
 			PersonDAO dbManager = new PersonDAO();
-			return dbManager.getPersonIncomeSalary(userTaxNumber);
+			return dbManager.getPersonTaxableIncome(userTaxNumber);
 		} catch (Exception e) {
-			System.out.println("Tax Calculator Service Error: Could not get Income Salary from database.");
-			return -1;
-		}
-	}
-	
-	private static int getIncomeBonus(String userTaxNumber) {
-		try {
-			PersonDAO dbManager = new PersonDAO();
-			return dbManager.getPersonIncomeBonus(userTaxNumber);
-		} catch (Exception e) {
-			System.out.println("Tax Calculator Service Error: Could not get Income Bonus from database.");
+			System.out.println("Tax Calculator Service Error: Could not get Taxable Income from database.");
 			return -1;
 		}
 	}
@@ -54,14 +75,28 @@ public class TaxCalculatorService {
 		}
 	}
 	
-	public static int getNetTaxPayable(String userTaxNumber) {
+	public static double getNetTaxPayable(String userTaxNumber) {
 		//return 700000;//dummy var
-		return getIncomeCapitalGain(userTaxNumber);
+		double salary = getIncomeSalary(userTaxNumber);
+		double bonus = getIncomeBonus(userTaxNumber);
+		double interest = getIncomeInterest(userTaxNumber);
+		double capitalGain = getIncomeCapitalGain(userTaxNumber);
+		double retirementFund = getExpensesRetirementFund(userTaxNumber);
+		double travelAllowance = getExpensesTravelAllowance(userTaxNumber);
+		
+		double taxableIncome = getTaxableIncome(userTaxNumber);
+		Expense expenses = new Expense(travelAllowance, retirementFund, salary + bonus);
+		double minusExpenses = taxableIncome - expenses.returnExpenses();
+		
+		TaxTable taxTable = new TaxTable(minusExpenses);
+		double fromTaxTable = taxTable.totalPayableTax();
+		
+		Nettaxpayable netTaxPayable = new Nettaxpayable(fromTaxTable);
+		
+		return netTaxPayable.CalcNetPayable();
 	}
 
 	public static void main(String[] args) {
-		int var = 69420;
-		System.out.println(var);
-		System.out.println(69);
+		System.out.println(getNetTaxPayable("98976678"));
 	}
 }
