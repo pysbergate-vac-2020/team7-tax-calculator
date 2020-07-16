@@ -29,10 +29,10 @@
 		<h1>Enter Your Tax Information Below</h1>
 		<hr/>
 		<form action="view" method="post">
-			<label>Tax Year: </label>
+			<!--  <label>Tax Year: </label>
 			<input type="number" name="taxyear" autofocus="autofocus" required="required" placeholder="2020" class="input"/>
 			<br/>
-			<br/>
+			<br/> -->
 			<label>Annual Salary: </label>
 			<input type="number" name="salary" required="required" placeholder="0.00" class="input"/>
 			<br/>
@@ -49,8 +49,18 @@
 			<input type="number" name="allowance" required="required" placeholder="0.00" class="input"/>
 			<br/>
 			<br/>
-			<hr/>
+			<label>Capital Gain: </label>
+			<input type="number" name="capitalgain" required="required" placeholder="0.00" class="input"/>
+			<br/>
+			<br/>
 			<input type="submit" value="Calculate Tax" class="button"/>
+			<br/>
+			<br/>
+			<label>Total Tax To Pay: </label>
+			<input type="number" name="totaltax"  placeholder="0.00" class="input"/>
+			<br/>
+			<br/>
+			<hr/>
 		</form>
 	</body>
 </html>

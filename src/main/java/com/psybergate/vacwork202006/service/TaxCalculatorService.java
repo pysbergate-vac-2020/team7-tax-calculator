@@ -5,7 +5,11 @@ import com.psybergate.vacwork202006.taxcalculator.*;
 
 public class TaxCalculatorService {
 	
+<<<<<<< HEAD
 	private static int getIncomeSalary(String userTaxNumber) {
+=======
+	public int getIncomeCapitalGain(String userTaxNumber) {
+>>>>>>> 529db0ccfb2b8b00067d6ed807d1c748f6e52dce
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonIncomeSalary(userTaxNumber);
@@ -15,7 +19,11 @@ public class TaxCalculatorService {
 		}
 	}
 	
+<<<<<<< HEAD
 	private static int getIncomeBonus(String userTaxNumber) {
+=======
+	public int getIncomeSalary(String userTaxNumber) {
+>>>>>>> 529db0ccfb2b8b00067d6ed807d1c748f6e52dce
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonIncomeBonus(userTaxNumber);
@@ -25,7 +33,11 @@ public class TaxCalculatorService {
 		}
 	}
 	
+<<<<<<< HEAD
 	private static int getIncomeInterest(String userTaxNumber) {
+=======
+	public int getIncomeBonus(String userTaxNumber) {
+>>>>>>> 529db0ccfb2b8b00067d6ed807d1c748f6e52dce
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonIncomeInterest(userTaxNumber);
@@ -35,6 +47,7 @@ public class TaxCalculatorService {
 		}
 	}
 	
+<<<<<<< HEAD
 	private static int getIncomeCapitalGain(String userTaxNumber) {
 		try {
 			PersonDAO dbManager = new PersonDAO();
@@ -56,6 +69,9 @@ public class TaxCalculatorService {
 	}
 	
 	private static int getExpensesRetirementFund(String userTaxNumber) {
+=======
+	public int getExpensesRetirementFund(String userTaxNumber) {
+>>>>>>> 529db0ccfb2b8b00067d6ed807d1c748f6e52dce
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonExpensesRetirementFund(userTaxNumber);
@@ -65,7 +81,11 @@ public class TaxCalculatorService {
 		}
 	}
 	
+<<<<<<< HEAD
 	private static int getExpensesTravelAllowance(String userTaxNumber) {
+=======
+	public int getExpensesTravelAllowance(String userTaxNumber) {
+>>>>>>> 529db0ccfb2b8b00067d6ed807d1c748f6e52dce
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonExpensesTravelAllowance(userTaxNumber);

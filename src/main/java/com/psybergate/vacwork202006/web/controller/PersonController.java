@@ -1,22 +1,23 @@
 package com.psybergate.vacwork202006.web.controller;
 
 import java.time.LocalDate;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.psybergate.vacwork202006.domain.Person;
-import com.psybergate.vacwork202006.service.PersonService;
+//import com.psybergate.vacwork202006.service.PersonService;
 
 public class PersonController {
 
   private static final String REGISTER_PAGE = "/WEB-INF/jsp/register.jsp";
 
-  private PersonService personService;
+  //private PersonService personService;
 
   public PersonController() {
-    personService = new PersonService();
+    //PersonService = new PersonService();
   }
 
   public String getRegisterPage(HttpServletRequest request, HttpServletResponse response) {
@@ -26,7 +27,7 @@ public class PersonController {
   public String registerPerson(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
     Person person = getPersonFromRequest(request);
-    personService.registerPerson(person);
+    //personService.registerPerson(person);
     String indexURL = request.getContextPath();
     return indexURL;
   }
@@ -45,7 +46,7 @@ public class PersonController {
     return taxPayer;
   }
 
-  public List<Person> getAllPeople() {
-    return personService.getAllPeople();
-  }
+  /*public List<Person> getAllPeople() {
+   return personService.getAllPeople();
+  }*/
 }

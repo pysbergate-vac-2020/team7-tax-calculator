@@ -141,12 +141,12 @@ public class PersonDAO {
 		}
 	}
 	
-	public void insertPersonExpenses(int personID, int retirementFund, int travelAllowance) {
+	public void insertPersonExpenses(String taxNumber,int retirementFund, int travelAllowance) {
 		try {
 			connect();
 			Statement insertStatement = connection.createStatement();
 			String sql = "INSERT INTO public.\"EXPENSES\"( \"PERSON_ID\", \"EXPENSES_RETIRE_FUND\", \"EXPENSES_TRAVEL_ALL\")\r\n" + 
-					"	VALUES ("+ personID + "," + retirementFund + "," + travelAllowance + ");";
+					"	VALUES ("+ getPersonID(taxNumber) + "," + retirementFund + "," + travelAllowance + ");";
 			insertStatement.executeUpdate(sql);
 			//connection.commit();
 		} catch (SQLException e) {
@@ -188,13 +188,17 @@ public class PersonDAO {
 		}
 	}
 
+<<<<<<< HEAD
 		
 	private void connect() {
+=======
+	public void connect() {
+>>>>>>> 529db0ccfb2b8b00067d6ed807d1c748f6e52dce
 		try{
 			//Class.forName("org.postgresql.Driver");
-			final String url = "jdbc:postgresql://localhost:5432/postgres";
+			final String url = "jdbc:postgresql://localhost:5432/TaxCalculator";
 			final String user = "postgres";
-			final String password = "T@nk99$admin";
+			final String password = "v@nd@22";
 			connection = DriverManager.getConnection(url, user, password);
 			if (connection!= null) {
 				System.out.println("Connected!");
