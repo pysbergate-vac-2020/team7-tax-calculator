@@ -188,12 +188,7 @@ public class PersonDAO {
 		}
 	}
 
-<<<<<<< HEAD
-		
 	private void connect() {
-=======
-	public void connect() {
->>>>>>> 529db0ccfb2b8b00067d6ed807d1c748f6e52dce
 		try{
 			//Class.forName("org.postgresql.Driver");
 			final String url = "jdbc:postgresql://localhost:5432/TaxCalculator";
