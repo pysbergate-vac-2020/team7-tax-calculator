@@ -4,7 +4,7 @@ import com.psybergate.vacwork202006.dao.*;
 
 public class TaxCalculatorService {
 	
-	private int getIncomeCapitalGain(String userTaxNumber) {
+	public int getIncomeCapitalGain(String userTaxNumber) {
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonIncomeCapitalGain(userTaxNumber);
@@ -14,7 +14,7 @@ public class TaxCalculatorService {
 		}
 	}
 	
-	private int getIncomeSalary(String userTaxNumber) {
+	public int getIncomeSalary(String userTaxNumber) {
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonIncomeSalary(userTaxNumber);
@@ -24,7 +24,7 @@ public class TaxCalculatorService {
 		}
 	}
 	
-	private int getIncomeBonus(String userTaxNumber) {
+	public int getIncomeBonus(String userTaxNumber) {
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonIncomeBonus(userTaxNumber);
@@ -34,7 +34,7 @@ public class TaxCalculatorService {
 		}
 	}
 	
-	private int getExpensesRetirementFund(String userTaxNumber) {
+	public int getExpensesRetirementFund(String userTaxNumber) {
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonExpensesRetirementFund(userTaxNumber);
@@ -44,7 +44,7 @@ public class TaxCalculatorService {
 		}
 	}
 	
-	private int getExpensesTravelAllowance(String userTaxNumber) {
+	public int getExpensesTravelAllowance(String userTaxNumber) {
 		try {
 			PersonDAO dbManager = new PersonDAO();
 			return dbManager.getPersonExpensesTravelAllowance(userTaxNumber);

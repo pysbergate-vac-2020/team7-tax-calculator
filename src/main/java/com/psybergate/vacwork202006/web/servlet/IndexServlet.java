@@ -29,9 +29,9 @@ public class IndexServlet extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     try {
-      List<Person> people = personController.getAllPeople();
-      req.setAttribute("people", people);
-      req.getRequestDispatcher(INDEX_PAGE).forward(req, resp);
+      //List<Person> people = personController.getAllPeople();
+     // req.setAttribute("people", people);
+      //req.getRequestDispatcher(INDEX_PAGE).forward(req, resp);
     }
     catch (final Exception ex) {
       throw new RuntimeException(ex);

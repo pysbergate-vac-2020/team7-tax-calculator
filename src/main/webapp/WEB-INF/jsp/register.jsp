@@ -28,7 +28,7 @@
 	<body>
 		<h1>Enter your information below</h1>
 		<hr/>
-		<form action="capture" method="post">
+		<form action="PersonSevlet" method="post">
 			<label>Tax Number: </label>
 			<input type="text" name="taxNumber" autofocus="autofocus" required="required" placeholder="Enter your Tax Number here" class="input"/>
 			<br/>
@@ -39,10 +39,6 @@
 			<br/>
 			<label>Surname: </label>
 			<input type="text" name="surname" required="required" placeholder="Enter your surname here" class="input"/>
-			<br/>
-			<br/>
-			<label>Date of Birth: </label>
-			<input type="date" name="dateOfBirth" required="required" class="input"/>
 			<br/>
 			<br/>
 			<hr/>

@@ -6,7 +6,7 @@ public class LoginService {
 	
 	String UserTaxNumber;
 	
-	private boolean checkUser(String taxNumber) {
+	public boolean checkUser(String taxNumber) {
 		PersonDAO sqlconnect = new PersonDAO();
 		int personID=sqlconnect.getPersonID(taxNumber);
 		if( personID == -1 ) {
