@@ -4,7 +4,9 @@ import com.psybergate.vacwork202006.dao.*;
 
 public class RegisterService {
 	
-	public static int registerUser(String userFirstName, String userLastName, String userTaxNumber) {
+	public static int registerUser(String userFirstName, String userLastName, String userTaxNumber,
+			double salary, double bonus, double interest, double purchasePrice, double additionalExpenses, double sellingPrice,
+			double retirementFund, double travelAllowance) {
 		PersonDAO dbManager = new PersonDAO();
 		
 		try {

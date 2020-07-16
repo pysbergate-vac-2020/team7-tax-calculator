@@ -107,6 +107,23 @@ public class PersonDAO {
 		}
 	}
 	
+	public int getPersonTaxableIncome(String taxNumber) {
+		try {
+			connect();
+			Statement insertStatement = connection.createStatement();
+			String sql = "SELECT \"INCOME_TAXABLE_INCOME\"\r\n" + 
+					"	FROM public.\"INCOME\"\r\n" + 
+					"	WHERE \"PERSON_ID\" = " + getPersonID(taxNumber) + ";";
+			ResultSet result = insertStatement.executeQuery(sql);
+			result.next();
+			int incomeTaxableIncome = result.getInt("INCOME_TAXABLE_INCOME");
+			return incomeTaxableIncome;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
 	public int getPersonIncomeCapitalGain(String taxNumber) {
 		try {
 			connect();
@@ -146,7 +163,7 @@ public class PersonDAO {
 					"	WHERE \"PERSON_ID\" = " + getPersonID(taxNumber) + ";";
 			ResultSet result = insertStatement.executeQuery(sql);
 			result.next();
-			int retirementFund = result.getInt("INCOME_RETIRE_FUND");
+			int retirementFund = result.getInt("EXPENSES_RETIRE_FUND");
 			return retirementFund;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -163,7 +180,7 @@ public class PersonDAO {
 					"	WHERE \"PERSON_ID\" = " + getPersonID(taxNumber) + ";";
 			ResultSet result = insertStatement.executeQuery(sql);
 			result.next();
-			int travelAllowance = result.getInt("INCOME_TRAVEL_ALL");
+			int travelAllowance = result.getInt("EXPENSES_TRAVEL_ALL");
 			return travelAllowance;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -172,7 +189,7 @@ public class PersonDAO {
 	}
 
 		
-	public void connect() {
+	private void connect() {
 		try{
 			//Class.forName("org.postgresql.Driver");
 			final String url = "jdbc:postgresql://localhost:5432/postgres";
@@ -189,13 +206,6 @@ public class PersonDAO {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-	}
-		
-	public static void main(String[] args) {
-		PersonDAO sqlconnect = new PersonDAO();
-		//sqlconnect.insertNewPerson("Bor", "Mtta", "76576578");
-		System.out.println(sqlconnect.getPersonIncomeCapitalGain("76576578"));
 	}
 }
 
