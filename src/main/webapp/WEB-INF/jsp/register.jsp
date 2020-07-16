@@ -41,6 +41,26 @@
 			<input type="text" name="surname" required="required" placeholder="Enter your surname here" class="input"/>
 			<br/>
 			<br/>
+			<label>Annual Salary: </label>
+			<input type="number" name="salary" required="required" placeholder="0.00" class="input"/>
+			<br/>
+			<br/>
+			<label>Retirement Contributions (Total): </label>
+			<input type="number" name="retirement" required="required" placeholder="0.00" class="input"/>
+			<br/>
+			<br/>
+			<label>Interest Income: </label>
+			<input type="number" name="interest" required="required" placeholder="0.00" class="input"/>
+			<br/>
+			<br/>
+			<label>Travel Allowance: </label>
+			<input type="number" name="allowance" required="required" placeholder="0.00" class="input"/>
+			<br/>
+			<br/>
+			<label>Capital Gain: </label>
+			<input type="number" name="capitalgain" required="required" placeholder="0.00" class="input"/>
+			<br/>
+			<br/>
 			<hr/>
 			<input type="submit" value="Register" class="button"/>
 		</form>

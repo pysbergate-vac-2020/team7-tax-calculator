@@ -50,7 +50,9 @@
 			<br/>
 			<br/>
 			<label>Capital Gain: </label>
-			<input type="number" name="capitalgain" required="required" placeholder="0.00" class="input"/>
+			<input type="number" name="purchaseprice" required="required" placeholder="0.00" class="input"/>
+			<input type="number" name="additionalexpenses" required="required" placeholder="0.00" class="input"/>
+			<input type="number" name="sellingprice" required="required" placeholder="0.00" class="input"/>
 			<br/>
 			<br/>
 			<input type="submit" value="Calculate Tax" class="button"/>

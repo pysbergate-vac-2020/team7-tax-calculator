@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.psybergate.vacwork202006.domain.Person;
 import com.psybergate.vacwork202006.service.LoginService;
 import com.psybergate.vacwork202006.service.RegisterService;
+import com.psybergate.vacwork202006.web.controller.RegisterDetailsController;
 
 
 /**
@@ -20,7 +21,7 @@ import com.psybergate.vacwork202006.service.RegisterService;
 @WebServlet("/person/*")
 public class PersonSevlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+      
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -45,15 +46,23 @@ public class PersonSevlet extends HttpServlet {
 		//doGet(request, response);
 		String name=request.getParameter("name");
 		String surname=request.getParameter("surname");
-		String taxnumber=request.getParameter("taxNumber");
+		String TaxNumber=request.getParameter("taxNumber");
 		String submittype=request.getParameter("submit");
-		
+		int retirement= Integer.parseInt(request.getParameter("retirement"));
+		int allowance= Integer.parseInt(request.getParameter("allowance"));
+		int salary= Integer.parseInt(request.getParameter("salary"));
+		int bonus= Integer.parseInt(request.getParameter("bonus"));
+		int interest= Integer.parseInt(request.getParameter("interest"));
+		int purchaseprice= Integer.parseInt(request.getParameter("purchaseprice"));
+		int sellingprice= Integer.parseInt(request.getParameter("sellingprice"));
+		int additionalexpenses= Integer.parseInt(request.getParameter("additionalexpenses"));
+		RegisterDetailsController details = new RegisterDetailsController();
 		RegisterService register= new RegisterService();
 		LoginService login=new LoginService();
-		boolean result=login.checkUser(taxnumber);
-			
+		boolean result=login.checkUser(TaxNumber);
+		
 		if(submittype.equals("Register")) {
-			register.registerUser(name,surname,taxnumber);
+			register.registerUser(name,surname,TaxNumber,salary,bonus,interest,purchaseprice,additionalexpenses,sellingprice,retirement,allowance);
 			request.setAttribute("SuccessMessage"," you can now login");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}else if (submittype.equals("Login") && result!=false) {

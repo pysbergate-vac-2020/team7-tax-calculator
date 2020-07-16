@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.psybergate.vacwork202006.dao.PersonDAO;
-import com.psybergate.vacwork202006.service.TaxCalculatorService;
+import com.psybergate.vacwork202006.service.*;
 import com.psybergate.vacwork202006.taxcalculator.CapitalGain;
 import com.psybergate.vacwork202006.taxcalculator.Expense;
 import com.psybergate.vacwork202006.taxcalculator.Income;
 
 
-@WebServlet("/taxcal/*")
+@WebServlet("/taxcalc/*")
 public class TaxCalculatorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,15 +42,18 @@ public class TaxCalculatorServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		String taxnumber=request.getParameter("taxNumber");
+		
 		int retirement= Integer.parseInt(request.getParameter("retirement"));
 		int allowance= Integer.parseInt(request.getParameter("allowance"));
 		int salary= Integer.parseInt(request.getParameter("salary"));
 		int bonus= Integer.parseInt(request.getParameter("bonus"));
 		int interest= Integer.parseInt(request.getParameter("interest"));
-		int capitalgain= Integer.parseInt(request.getParameter("capitalgain"));
+		int purchaseprice= Integer.parseInt(request.getParameter("purchaseprice"));
+		int sellingprice= Integer.parseInt(request.getParameter("sellingprice"));
+		int additionalexpenses= Integer.parseInt(request.getParameter("additionalexpenses"));
 		int totaltax= Integer.parseInt(request.getParameter("totaltax"));
 		
-		CapitalGain capitalgains = new CapitalGain();
+		CapitalGain capitalgains = new CapitalGain(purchaseprice,sellingprice,additionalexpenses);
 		Income income = new Income(salary,bonus,interest,capitalgains);
 		Expense expense = new Expense(allowance,retirement,salary);
 		PersonDAO person = new PersonDAO();
@@ -62,11 +65,11 @@ public class TaxCalculatorServlet extends HttpServlet {
 		int Bonus = calculator.getIncomeBonus(taxnumber);
 		int Interest = calculator.getIncomeInterest(taxnumber);
 		int Allowance = calculator.getExpensesTravelAllowance(taxnumber);
-		int TotalTax = calculator.getNetTaxPayable(taxnumber);
+		double TotalTax = calculator.getNetTaxPayable(taxnumber);
 		
 		if (income==null && expense ==null) {
-		person.insertPersonIncome(taxnumber ,income);
-		person.insertPersonExpenses(taxnumber, retirement, allowance);
+		/*person.insertPersonIncome(taxnumber ,income, );
+		person.insertPersonExpenses(taxnumber, retirement, allowance);*/
 		}else if (income!=null && expense !=null) {
 		// from database to form
 		request.setAttribute("capitalgain", CapitalGain);

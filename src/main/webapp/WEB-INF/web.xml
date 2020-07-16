@@ -6,7 +6,7 @@
 	version="3.1">
 	
 	<servlet>
-		<servlet-name>PersonServlet</servlet-name>
+		<servlet-name>PersonSevlet</servlet-name>
 		<servlet-class>com.psybergate.vacwork202006.web.servlet.PersonSevlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
