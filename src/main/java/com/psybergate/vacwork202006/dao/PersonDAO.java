@@ -42,13 +42,16 @@ public class PersonDAO {
 		}
 	}
 	
-	public void insertPersonIncome(String taxNumber ,Income income) {
+	public void insertPersonIncome(String taxNumber ,Income income, int taxableIncome) {
 		
 		try {
 			connect();
 			Statement insertStatement = connection.createStatement();
-			String sql = "INSERT INTO public.\"INCOME\"( \"PERSON_ID\", \"INCOME_SALARY\", \"INCOME_BONUS\", \"INCOME_INTEREST\", \"INCOME_CAPITAL_GAIN\")\r\n" + 
-					"	VALUES ("+  getPersonID(taxNumber) + "," + income.getPersonSalary() + "," + income.getPersonBonus() + "," + income.getInterestRecieved() + "," + income.getCapitalGain() + ");";
+			//TODO fix this statement
+			String sql = "INSERT INTO public.\"INCOME\"(\n" + 
+					"	\"PERSON_ID\", \"INCOME_CAPITAL_GAIN\", \"INCOME_TAXABLE_INCOME\", \"INCOME_BONUS\", \"INCOME_SALARY\", \"INCOME_INTEREST\")\n" + 
+					"	VALUES (" + getPersonID(taxNumber) + ", " + income.getCapitalGain().capitalGainFromAsset() + ", " + taxableIncome + ", " + income.getPersonBonus() +
+							"," + income.getPersonSalary() + "," + income.getInterestRecieved() + ");";
 			insertStatement.executeUpdate(sql);
 			//connection.commit();
 		} catch (SQLException e) {
@@ -191,9 +194,9 @@ public class PersonDAO {
 	private void connect() {
 		try{
 			//Class.forName("org.postgresql.Driver");
-			final String url = "jdbc:postgresql://localhost:5432/TaxCalculator";
+			final String url = "jdbc:postgresql://localhost:5432/postgres";
 			final String user = "postgres";
-			final String password = "v@nd@22";
+			final String password = "T@nk99$admin";
 			connection = DriverManager.getConnection(url, user, password);
 			if (connection!= null) {
 				System.out.println("Connected!");
